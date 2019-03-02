@@ -4,6 +4,7 @@
 ### Spring Security
 ### HTML CSS
 ### Thymeleaf
+### JavaScript and jQuery library
 ## Server 
 ### Tomcat
 ## Database
