@@ -6,4 +6,4 @@
 ### MySQL
 ### HTML
 ### CSS
-### JavaScript
+### JavaScript jQuery
