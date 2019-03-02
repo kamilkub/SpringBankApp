@@ -2,8 +2,11 @@
 ## Technologies
 ### Spring Boot
 ### Spring Security
+### HTML CSS
 ### Thymeleaf
+## Server 
+### Tomcat
+## Database
 ### MySQL
-### HTML
-### CSS
-### JavaScript jQuery
+
+
