@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/top">
+
+</head>
+<body>
+
+<div id="con-menu">
+
+   <div th:replace="common/sidebar"></div>
+
+  
+    
+  <div class="con-menu-cards">
+  
+    <h1 class="text-center welcome" th:text="${helloUser}"></h1>
+      <hr>
+			<div class="place-card" style="margin-left:20%;">
+				<div class="card text-white bg-primary mb-5"
+					style="width:500px;">
+					<div class="card-header">Main Account</div>
+					<div class="card-body">
+						<h5 class="card-title">
+							Balance: <span class="card-text" th:text="${mainBalance}"></span>
+						</h5>
+						<h5 class="card-title">
+							Account Number: <span class="card-text" th:text="${mainNumber}"></span>
+						</h5>
+						<a class="btn btn-outline-dark btn-lg" href="/menu/make/mainDeposit"
+							style="margin-top: 5%; color: white;">Make deposit</a>
+
+					</div>
+				</div>
+
+				<div class="card text-white bg-info mb-5" style="width:100%;">
+					<div class="card-header">Savings Account</div>
+					<div class="card-body">
+						<h5 class="card-title">Balance: <span class="card-text" th:text="${savBalance}"></span></h5>
+						<h5 class="card-title">
+							Account Number: <span class="card-text" th:text="${savNumber}"></span>
+						</h5>
+							<a class="btn btn-outline-dark btn-lg" href="/menu/make/savingsDeposit"
+							style="margin-top: 5%; color: white;">Make deposit</a>
+					</div>
+				</div>
+
+
+
+			</div>
+
+		</div> 
+   
+</div>   
+  
+
+</body>
+</html>

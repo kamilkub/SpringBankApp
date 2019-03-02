@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Deposit</title>
+<link rel="icon" href="/images/bank.png">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" href="/css/deposit.css">
+<link rel="stylesheet" href="/css/popups.css">
+</head>
+<body>
+   <div class="text-center">
+    <a class="btn btn-primary" style="margin-top:50px;" href="/menu">Go back Home</a>
+  </div>
+
+<div class="deposit-menu">
+
+
+<div th:if="${cannotBeNull}"><h1>You haven't provided the amount!</h1></div>
+<div th:if="${available}"><h2>You can only deposit 500$ a day</h2></div>
+<div th:if="${failureDeposit}"><h2>Something went wrong, try again later!</h2></div>
+<div th:if="${successDeposit}"><h2>Money has been paid on your account succesfully</h2></div>
+
+<div class="deposit-header">
+<!----- Savings Account Form ------>
+
+
+<div th:if="${savings}">
+  
+  <h2>Deposit Savings Account</h2>
+ 
+</div>
+
+
+<!------- Main Account Form ------->
+
+<div th:if="${main}">
+
+
+  <h2>Deposit Main Account</h2>
+  
+</div>
+
+</div>
+
+
+
+
+
+<div class="deposit-body">
+    <h3>How much would you like to deposit?</h3>
+ </div>
+ 
+ <div th:if="${main}">
+   <form method="POST" th:action="@{/menu/make/mainDeposit}">
+    <input type="number" class="deposit-input" min="0" name="amount" placeholder="How much">
+    <br>
+    <button type="submit" id="load-button" class="btn btn-danger btn-lg btnclass">Deposit</button>
+  </form>
+  
+</div>
+
+<div th:if="${savings}">
+  <form method="POST" th:action="@{/menu/make/savingsDeposit}">
+    <input type="number" class="form-input" name="amount" min="0" placeholder="How much">
+    <br>
+    <button type="submit" id="load-button" class="btn btn-danger btn-lg btnclass">Deposit</button>
+  </form>
+  
+ 
+</div>
+
+</div>
+
+
+<script src="/js/loader.js"></script>
+
+
+</body>
+</html>

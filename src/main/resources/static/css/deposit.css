@@ -1,0 +1,47 @@
+body {
+	background:#3e3842;
+}
+
+.deposit-menu{
+	background:white;
+	border-radius:10px;
+	height:300px;
+	width:25%;
+	margin:5% 37.5%;
+}
+
+.deposit-header{
+	border-bottom:3px solid black;
+	background:#900C3F;
+}
+
+form{
+	text-align:center;
+}
+
+input[type=number]{
+	border:none;
+	border-radius:5px;
+	text-align:center;
+	width:40%;
+	height:70px;
+}
+
+.btnclass{
+	width:50%;
+	margin-top:8%;
+	
+}
+
+.deposit-body{
+	
+}
+
+h2{
+	text-align:center;
+}
+
+h3{
+	margin-top:2%;
+	text-align:center;
+}

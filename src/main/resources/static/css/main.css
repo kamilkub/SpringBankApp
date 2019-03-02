@@ -1,0 +1,30 @@
+body{
+	margin:0 auto;
+	background: #a6d3a0;
+	
+}
+
+h2{
+	color:#6e453d;
+    text-align:center;
+    padding:10px;	
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+p{
+	font-size:16px;
+	text-align:center;
+	font-weight:bold;
+}
+
+
+.smile{
+	padding:30px;
+	color:yellow;
+	font-weight:bold;
+	transform: rotate(90deg);
+	font-size:70px;
+	display:inline-block;
+}
+
+

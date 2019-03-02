@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Registration</title>
+  <link rel="icon" href="/images/bank.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+
+  <div class="text-center">
+    <a class="btn btn-primary" style="margin-top:50px;" href="/">Go back Home</a>
+  </div>
+  
+
+<div class="modal-dialog text-center">
+  <div class="col-sm-8 main-section">
+   <div class="modal-content">
+     <div class="col-12 user-img">
+       <img src="/img/logo.png">
+     </div>
+     <div class="col-12 user-name">
+        <h1>Registration</h1>
+     </div>
+     <div class="col-12 form-input">
+     
+     <!--### Errors ###-->
+    
+
+      <!--### Registration form ###-->
+      <span style="color:green;" th:if="${saved}">Successful!</span>
+      
+      <span style="color:red;" th:if="${userexists}">Email or login already exists</span>
+      
+      
+      
+        <form method="POST" th:action="@{/user/register}" th:object="${user}">
+        
+        <div class="err" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+           </div>
+           
+          <div class="form-group">
+            <input th:field="${user.firstName}" id="first" type="text" class="form-control" oninput="checkNames()" onchange="disappearErrors()" placeholder="First name" required>
+          </div>
+          
+          
+          <div class="err" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+           </div>
+          <div class="form-group">
+            <input th:field="${user.lastName}" id="last" type="text" class="form-control" oninput="checkNames()" onchange="disappearErrors()" placeholder="Last name" required>
+          </div>
+          
+
+           <div class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+          </div>
+          <div class="form-group">
+            <input th:field="${user.email}" id="email" type="email" class="form-control" onchange="disappearErrors()" placeholder="Email" required>
+          </div>
+ 
+
+          <div class="err" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">
+             </div>
+           <div class="form-group">
+            <input th:field="${user.login}" id="usrn" type="text" class="form-control" onchange="disappearErrors()" placeholder="Username" maxlength="50" required>
+           </div>
+           
+           
+              <div class="err" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">
+               </div>
+            <div class="form-group">
+            <input th:field="${user.phone}" id="phn" type="text" class="form-control" onchange="disappearErrors()" placeholder="xxx-xxx-xxx" maxlength="9" required>
+           </div>
+         
+         
+           <div class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+            </div> 
+           <div class="form-group">
+            <input th:field="${user.password}" id="pwd" type="password" class="form-control" placeholder="Password" max="60" required>
+            <input type="checkbox" class="form control" onclick="showPassword()">
+           </div>
+           
+           <button type="submit" class="btn btn-success" id="register-btn">Sign up</button>
+           
+        </form>
+        
+        
+        
+     </div>
+   <div class="col-12 link-part">
+     <a th:href="@{/user/login}">Login</a>
+   </div>
+
+   </div>
+
+  </div>
+</div>
+
+
+
+ <script src="/js/required.js"></script>
+ 
+ 
+ <script th:inline="javascript">
+
+
+
+var message = [[${saved}]];
+
+ if(message){
+	 $('#first').val("");
+	 $('#last').val("");
+	 $('#phn').val("");
+	 $('#pwd').val("");
+	 $('#usrn').val("");
+	 $('#email').val("");
+ }
+
+</script>
+ 
+</body>
+</html>

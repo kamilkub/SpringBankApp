@@ -1,0 +1,77 @@
+ <div class="area">
+      <nav id="main-menu">
+
+
+      <div id="user-menu">
+     <img src="/img/user.png">
+     <br>
+      <p class="us-text" th:text="${userName}">Username</p>
+
+     </div>
+
+
+         <ul>
+
+            <li>
+               <a th:href="@{/menu}"><i class="fas fa-home"></i>
+                 <span class="text-sign">Home
+                 </span></a>
+            </li>
+
+         </ul>
+
+         <ul>
+
+            <li>
+               <a th:href="@{/menu/accountstatus}"><i class="fas fa-money-check"></i>
+                 <span class="text-sign">Account
+                 </span></a>
+            </li>
+
+        </ul>
+
+        <ul>
+
+            <li>
+               <a th:href="@{/menu/recipients}"><i class="fas fa-handshake"></i>
+                 <span class="text-sign">Recipients
+               </span></a>
+            </li>
+
+        </ul>
+
+        <ul>
+
+            <li>
+               <a th:href="@{/menu/appointments}"><i class="fas fa-clock"></i>
+                 <span class="text-sign">Appointments
+                 </span></a>
+            </li>
+
+        </ul>
+
+        <ul>
+
+            <li>
+               <a th:href="@{/menu/settings}"><i class="fas fa-address-book"></i>
+                 <span class="text-sign">Settings
+                 </span></a>
+            </li>
+
+        </ul>
+
+        <ul>
+
+            <li>
+               <a th:href="@{/user/logout}"><i class="fas fa-sign-out-alt"></i>
+                 <span class="text-sign">Logout
+                 </span></a>
+            </li>
+
+        </ul>
+
+
+      </nav>
+
+</div>
+

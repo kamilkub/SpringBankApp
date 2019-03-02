@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="icon" href="/images/bank.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+
+ <div class="text-center">
+    <a class="btn btn-primary" style="margin-top:50px;" href="/">Go back Home</a>
+  </div>
+
+<div class="modal-dialog text-center">
+  <div class="col-sm-8 main-section">
+   <div class="modal-content">
+     <div class="col-12 user-img">
+       <img src="/img/logo.png">
+     </div>
+     
+     <div th:if="${param.error}">
+		   <p style="color:red;">Invalid username or password</p>
+		</div>
+		
+		
+	 <div th:if="${param.logout}">
+	       <p style="color:green;">You sign out!</p>
+	 </div>
+     
+     <div class="col-12 user-name">
+        <h1>Sign in</h1>
+     </div>
+     
+     <div class="col-12 form-input">
+     
+       <!--### Login form ### -->
+        <form method="POST" th:action="@{/user/login}">
+           <div class="form-group">
+            <input id="usrn" name="login" type="text" class="form-control" placeholder="Username">
+           </div>
+           <div class="form-group">
+            <input id="pwd" name="password" type="password" class="form-control" placeholder="Password">
+           </div>
+           <button type="submit" class="btn btn-success">Login</button>
+        </form>
+        
+        
+     </div>
+     
+     
+   <div class="col-12 link-part">
+     <a th:href="@{/user/register}">Registration</a>
+   </div>
+
+   </div>
+
+  </div>
+</div>
+
+        <script src="/js/required.js"></script>
+</body>
+</html>
