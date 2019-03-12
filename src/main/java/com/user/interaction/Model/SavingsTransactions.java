@@ -1,7 +1,6 @@
 package com.user.interaction.Model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "savings_transactions")
@@ -18,10 +18,10 @@ public class SavingsTransactions {
 	// Main variables for transactions
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_trans;
+	private Long id;
 	
 
-	private Date date;
+	private String date;
 	
 	private String descrp;
 	
@@ -29,46 +29,28 @@ public class SavingsTransactions {
 	
 	private String status;
 	
-	private double trans_amount;
+	private BigDecimal amount;
+	
+	private BigDecimal availableBalance;
 	
 	
-	
-	private BigDecimal ava_balance;
 	
 	@ManyToOne
 	@JoinColumn(name = "savings_account_id")
 	private SavingsAccount savings_account;
 
 	
-	// Constructor
+	
 
-	public SavingsTransactions(Date date, String descrp, String type, String status, double trans_amount,
-			BigDecimal ava_balance, SavingsAccount savings_account) {
-		super();
-		this.date = date;
-		this.descrp = descrp;
-		this.type = type;
-		this.status = status;
-		this.trans_amount = trans_amount;
-		this.ava_balance = ava_balance;
-		this.savings_account = savings_account;
-	}
 
 	// Getters & Setters
 
-	public Long getId_trans() {
-		return id_trans;
-	}
-
-	public void setId_trans(Long id_trans) {
-		this.id_trans = id_trans;
-	}
-
-	public Date getDate() {
+	
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -96,28 +78,40 @@ public class SavingsTransactions {
 		this.status = status;
 	}
 
-	public double getTrans_amount() {
-		return trans_amount;
+    
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setTrans_amount(double trans_amount) {
-		this.trans_amount = trans_amount;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public BigDecimal getAva_balance() {
-		return ava_balance;
+	public BigDecimal getAmount() {
+		return amount;
 	}
 
-	public void setAva_balance(BigDecimal ava_balance) {
-		this.ava_balance = ava_balance;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
-	public SavingsAccount getSav_acc() {
+	public BigDecimal getAvailableBalance() {
+		return availableBalance;
+	}
+
+	public void setAvailableBalance(BigDecimal availableBalance) {
+		this.availableBalance = availableBalance;
+	}
+
+	public SavingsAccount getSavingsAccount() {
 		return savings_account;
 	}
 
-	public void setSav_acc(SavingsAccount sav_account) {
-		this.savings_account = sav_account;
+	public void setSavingsAccount(SavingsAccount savings_account) {
+		this.savings_account = savings_account;
 	}
+
+	
 
 }

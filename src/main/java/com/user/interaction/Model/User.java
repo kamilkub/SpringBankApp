@@ -28,7 +28,7 @@ public class User {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
+	private Long id;
 	
 	@NotNull(message = "Please provide login")
 	@Size(min = 4, max = 50, message="Must be at least 4 characters")
@@ -61,14 +61,14 @@ public class User {
 	private String email;
 	
 	@Column(name = "role")
-	private String role;
+	private String role = "USER";
 	
 	
 	
 	private String token;
 	
 	
-	public boolean activated = true;
+	public boolean activated;
 
     @OneToOne
 	private SavingsAccount savingsAccount;
@@ -97,9 +97,14 @@ public class User {
 
 
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 
 
@@ -113,14 +118,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-
-
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
 
 
 	public String getLogin() {
@@ -251,9 +248,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", login=" + login + ", password=" + password + ", firstName=" + firstName
+		return "User [userId=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", phone=" + phone + ", email=" + email + ", token=" + token
-				+ ", activated=" + activated + ", savAccount=" + savingsAccount + ", mainAccount=" + mainAccount
+				+ ", activated=" + activated + ", savingsAccount=" + savingsAccount + ", mainAccount=" + mainAccount
 				+ ", meets=" + meets + ", recip=" + recip + "]";
 	}
 	

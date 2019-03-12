@@ -6,12 +6,53 @@
 <body>
 
 
+
 <div id="con-menu">
+
 
     <div th:replace="/common/sidebar"></div>
     
     <div class="con-menu-cards">
     
+    
+    
+    <div id="user-menu">
+    
+    <div class="alert alert-warning myalert blur" id="warn-al" style="margin-top:2%;" th:if="${null}" role="null-alert">
+        You don't have enough money to make this deposit or you provided wrong details. Try again!
+    </div>
+    
+    
+    
+      <h1 class="my-text">User Details</h1>
+      <p class="my-text">Send money to other user in our Service</p>
+    
+    
+    <form method="POST" th:action="@{/sendmoney}" th:object="${recipient}">
+      <div class="form-group">
+      <input class="form-control" th:field="${recipient.name}" type="text" placeholder="Recipient name" required>
+      </div>
+      
+       <div class="form-group">
+      <input class="form-control"  th:field="${recipient.email}" type="text" placeholder="Recipient email" required>
+      </div>
+      
+      <div class="form-group">
+      <input class="form-control"  th:field="${recipient.accountNumber}" type="text" placeholder="Recipient account number"  required>
+      </div>
+      
+      <div class="form-group">
+      <input class="form-control"  th:field="${recipient.description}" type="text" placeholder="Description when user recieves the money"  required>
+      </div>
+      
+      <div class="form-group">
+      <input class="form-control"  type="number" min="0" name="money" placeholder="Amount you want to send"  required>
+      </div>
+      
+      <button type="submit" class="btn btn-success btn-lg">Send Money</button>
+   </form>
+    
+    </div>
     </div>
   
  </div>

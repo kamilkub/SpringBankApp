@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
 <div class="alert alert-danger" role="alert">
   <h1>We don't have such a request on our site!</h1>
   <br>
-<a href="@{/}" class="btn btn-primary">Go Back</a>
+<a th:href="@{/}" class="btn btn-primary">Go Back</a>
 </div>
 
 

@@ -11,8 +11,54 @@
     
     <div class="con-menu-cards">
     
+    <div id="user-menu">
+    
+         <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Account Number</th>
+    </tr>
+  </thead>
+  <th:block th:each="recipient : ${recipients}">
+    <tr>
+      <th scope="row">1</th>
+      <td class="missing" th:text="${recipient.name}"></td>
+      <td class="missing" th:text="${recipient.phone}">Missing</td>
+      <td class="missing" th:text="${recipient.email}"></td>
+      <td class="missing" th:text="${recipient.accountNumber}"></td>
+      <td><a type="button" class="btn btn-danger" th:href="@{/delete-recip(id=${recipient.id})}">Delete</a></td>
+    </tr>
+   
+  </th:block>
+</table>
+    
+    </div>
+    
+    
     </div>
   
  </div>
+ 
+ <script>
+ 
+
+var a = document.querySelectorAll('.missing');
+ 
+ a.forEach(function(result){
+	 
+	 if(result.textContent == ""){
+		 result.textContent = "Not found";
+	 }
+	 
+ });
+  
+ 
+ </script>
+ 
+ 
 </body>
 </html>

@@ -1,10 +1,6 @@
 package com.user.interaction;
 
-import java.math.BigDecimal;
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,12 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.user.interaction.Model.MainAccount;
+import com.user.interaction.Model.Meetings;
 import com.user.interaction.Model.User;
 import com.user.interaction.Repositories.MainAccountImpl;
+import com.user.interaction.Repositories.MeetingsRepository;
 import com.user.interaction.Repositories.SavingsAccountImpl;
 import com.user.interaction.Repositories.UserRepository;
 import com.user.interaction.Service.AccountService;
+import com.user.interaction.Service.MeetingService;
 import com.user.interaction.Service.UserService;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +24,7 @@ import com.user.interaction.Service.UserService;
 public class UserInteractionApplicationTests {
 
 	@Autowired
-	private UserRepository userRepo;
+	UserRepository userRepo;
 	
 	@Autowired
 	BCryptPasswordEncoder encoder;
@@ -36,6 +34,9 @@ public class UserInteractionApplicationTests {
 	
 	@Autowired
 	AccountService aService;
+	
+	@Autowired
+	MeetingService mService;
 	
 	
 	@Autowired
@@ -47,26 +48,40 @@ public class UserInteractionApplicationTests {
 	@Autowired
 	EntityManager entityManager;
 	
+	@Autowired
+	MeetingsRepository mRepo;
+	
 	
 	@Test
 	public void contextLoads() {
 		
-	User user = uService.findByLogin("kamkk");
+	User user = uService.findByLogin("hacking");
 	
-	MainAccount account = mAImpl.findById(user.getMainAccount().getId());
+	user.setActivated(true);
 	
-	BigDecimal big = BigDecimal.valueOf(200);
-	
-	account.setAccountBalance(big);
-    
-	mAImpl.save(account);
+    uService.updateUser(user);
+//	
+//	MainAccount account = mAImpl.findById(user.getMainAccount().getId());
+//	
+//	BigDecimal big = BigDecimal.valueOf(200);
+//	
+//	account.setAccountBalance(big);
+//    
+//	mAImpl.save(account);
+//		
 		
-		
-		
-		
-		
-		
-		
+//		User user = uService.findByLogin("kamkk");
+//		Meetings meet = new Meetings();
+//		
+//		meet.setConfirmed(true);
+//		meet.setDate("20/12/2019");
+//		meet.setDescription("Meet-up about opening bank account in our service");
+//		meet.setFullName("Micheal Milson");
+//		meet.setLocation("London, UK");
+//		meet.setUser(user);
+//		
+//		
+//		mService.saveMeeting(meet);
 		
 	}
 	

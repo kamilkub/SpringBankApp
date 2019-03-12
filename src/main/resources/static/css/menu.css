@@ -1,10 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Staatliches");
-
+@import url("https://fonts.googleapis.com/css?family=Karla");
 
 .welcome{
 	 padding:2%;
 	 font-weight:bold;
-	
+	 font-family: 'Karla', sans-serif;
+	 color:white;
+}
+
+.my-text{
+	font-weight:bold;
+	font-family: 'Karla', sans-serif;
+	color:white;
 }
 
 
@@ -168,6 +175,7 @@ nav.main-menu li.active a,
 }
 
 
+
 .con-menu-cards{
 	width:100%;
 	position:absolute;
@@ -175,7 +183,7 @@ nav.main-menu li.active a,
 	left:2%;
 	right:0%;
 	height:100%;
-	background: #5e9575;
+	background: #3189ff;
 	clear:both;
 	
 }

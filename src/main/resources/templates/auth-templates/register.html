@@ -12,8 +12,16 @@
 <body>
 
   <div class="text-center">
-    <a class="btn btn-primary" style="margin-top:50px;" href="/">Go back Home</a>
+    <a class="btn btn-primary" style="margin-top:50px;margin-bottom:50px;" href="/">Go back Home</a>
   </div>
+  
+  
+ <div class="alert alert-success" role="alert" th:if="${saved}">
+  Confirmation link has been sent to you!
+</div>
+<div class="alert alert-danger" role="alert" th:if="${userexists}">
+  Use different login or email!
+</div>
   
 
 <div class="modal-dialog text-center">
@@ -31,12 +39,8 @@
     
 
       <!--### Registration form ###-->
-      <span style="color:green;" th:if="${saved}">Successful!</span>
       
-      <span style="color:red;" th:if="${userexists}">Email or login already exists</span>
-      
-      
-      
+
         <form method="POST" th:action="@{/user/register}" th:object="${user}">
         
         <div class="err" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
@@ -103,22 +107,7 @@
  <script src="/js/required.js"></script>
  
  
- <script th:inline="javascript">
-
-
-
-var message = [[${saved}]];
-
- if(message){
-	 $('#first').val("");
-	 $('#last').val("");
-	 $('#phn').val("");
-	 $('#pwd').val("");
-	 $('#usrn').val("");
-	 $('#email').val("");
- }
-
-</script>
+ <script th:inline="javascript" src="/js/register.js"></script>
  
 </body>
 </html>

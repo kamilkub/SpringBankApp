@@ -18,135 +18,130 @@ import com.user.interaction.Service.UserService;
 
 @Controller
 public class DepositController {
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	AccountService accountService;
-	
 
 	@GetMapping("/menu/make/savingsDeposit")
 	public String getSavDespoit(Model model) {
-		
+
 		model.addAttribute("savings", true);
 		
+        model.addAttribute("available", true);
 		
+		model.addAttribute("null", true);
+
 		return "deposit";
-		
+
 	}
-	
+
 	@GetMapping("/menu/make/mainDeposit")
 	public String getMainDespoit(Model model) {
-		
-		
+
 		model.addAttribute("main", true);
 		
+		model.addAttribute("available", true);
 		
+		model.addAttribute("null", true);
+
 		return "deposit";
-		
+
 	}
-	
+
 	//// ---------------------- POST MAPPINGS ------------------------------ ////
-	
-	
-	
+
 	@PostMapping("/menu/make/savingsDeposit")
 	public String makeSavDeposit(@RequestParam("amount") BigDecimal amount, Model model) throws InterruptedException {
-		
+
 
 		
-		model.addAttribute("available", true);
-		
-		
-		if(amount == null) {
-			Thread.sleep(4000);
-			model.addAttribute("cannotBeNull", true);
-			return "redirect:/menu/make/savingsDeposit";
+
+		if (amount == null) {
+			Thread.sleep(3000);
+			model.addAttribute("savings", true);
+			model.addAttribute("failure", true);
+			return "deposit";
 		}
-		
-		if(!isBetween(amount)) {
-			Thread.sleep(4000);
-			model.addAttribute("cannotBeNull", true);
-			return "redirect:/menu/make/savingsDeposit";
+
+		if (!isBetween(amount)) {
+			Thread.sleep(3000);
+			model.addAttribute("savings", true);
+			model.addAttribute("failure", true);
+			return "deposit";
 		} else {
-			
-	
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		User user = userService.findByLogin(auth.getName());
-		
-		if(accountService.savAccountDepositBalance(user.getSavingsAccount().getAccountNumber(), amount)) {
-			Thread.sleep(4000);
-			model.addAttribute("successDeposit", true);
-			return "redirect:/menu/make/savingsDeposit";
-		}else {
-			Thread.sleep(4000);
-			model.addAttribute("failureDeposit", true);
-			return "redirect:/menu/make/savingsDeposit";
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+			User user = userService.findByLogin(auth.getName());
+
+			if (accountService.savAccountDepositBalance(user.getSavingsAccount().getAccountNumber(), amount)) {
+				Thread.sleep(3000);
+				model.addAttribute("savings", true);
+				model.addAttribute("success", true);
+				return "deposit";
+			} else {
+				Thread.sleep(3000);
+				model.addAttribute("savings", true);
+				model.addAttribute("failure", true);
+				return "deposit";
+			}
 		}
+
 	}
-	
-		
-	}
-	
+
 	@PostMapping("/menu/make/mainDeposit")
 	public String makeMainDespoit(@RequestParam("amount") BigDecimal amount, Model model) throws InterruptedException {
-		
-		
-			
-		model.addAttribute("available", true);
-		
-		
-		if(amount == null) {
-			model.addAttribute("cannotBeNull", true);
-			Thread.sleep(4000);
-			return "redirect:/menu/make/mainDeposit";
+
+
+		if (amount == null) {
+			Thread.sleep(3000);
+			model.addAttribute("main", true);
+			model.addAttribute("failure", true);
+			return "deposit";
 		}
 		
-		if(!isBetween(amount)) {
-			
-			model.addAttribute("cannotBeNull", true);
-			Thread.sleep(4000);
-			return "redirect:/menu/make/mainDeposit";
-		}else {
-			
-	
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		User user = userService.findByLogin(auth.getName());
-		
-		if(accountService.mAccountDepositBalance(user.getMainAccount().getAccountNumber(), amount)) {
-			model.addAttribute("successDeposit", true);
-			Thread.sleep(4000);
-			return "redirect:/menu/make/mainDeposit";
-		}else {
-			model.addAttribute("failureDeposit", true);
-			Thread.sleep(4000);
-			return "redirect:/menu/make/mainDeposit";
+		if (!isBetween(amount)) {
+			Thread.sleep(3000);
+			model.addAttribute("main", true);
+			model.addAttribute("failure", true);
+			return "deposit";
+		} else {
+
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+			User user = userService.findByLogin(auth.getName());
+
+			if (accountService.mAccountDepositBalance(user.getMainAccount().getAccountNumber(), amount)) {
+				Thread.sleep(3000);
+				model.addAttribute("main", true);
+				model.addAttribute("success", true);
+				return "deposit";
+			} else {
+				Thread.sleep(3000);
+				model.addAttribute("main", true);
+				model.addAttribute("failure", true);
+				return "deposit";
+			}
 		}
+
 	}
-		
-	
-	}
-	
-	
+
 	/// --- METHODS --- ///
-	
-	
-	public boolean isAuthenticated(){
 
-	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
+	public boolean isAuthenticated() {
 
-	   }
-	
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		return authentication != null && !(authentication instanceof AnonymousAuthenticationToken)
+				&& authentication.isAuthenticated();
+
+	}
+
 	public static boolean isBetween(BigDecimal amount) {
 		return amount.compareTo(BigDecimal.ZERO) > 0 && amount.compareTo(BigDecimal.valueOf(500)) < 0;
 	}
-	
-	
-	
-	
-}
 
+}

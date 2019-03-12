@@ -4,24 +4,39 @@
 <meta charset="UTF-8">
 <title>Deposit</title>
 <link rel="icon" href="/images/bank.png">
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" href="/css/deposit.css">
 <link rel="stylesheet" href="/css/popups.css">
 </head>
-<body>
+
+<body class="loader position-loader">
    <div class="text-center">
-    <a class="btn btn-primary" style="margin-top:50px;" href="/menu">Go back Home</a>
+    <a class="btn btn-primary blur" style="margin-top:50px;" href="/menu">Go back Home</a>
   </div>
+  
+  
+  <div class="alert alert-primary myalert blur" style="margin-top:2%;" th:if="${available}" role="limit-alert">
+  You can only deposit 500$ at one time!
+</div>
 
-<div class="deposit-menu">
+<div class="alert alert-warning myalert blur" id="warn-al" style="margin-top:2%;" th:if="${null}" role="null-alert">
+  You haven't provided the amount!
+</div>
+
+<div class="alert alert-danger myalert blur" style="margin-top:2%;" th:if="${failure}" role="failure-alert">
+  <h4>Something went wrong, maybe you provided wrong amount. Try again!</h4>
+</div>
+
+<div class="alert alert-success myalert blur" th:if="${success}" style="margin-top:2%;" role="success-alert">
+  <h3>Money has been paid on your account succesfully!</h3>
+</div>
 
 
-<div th:if="${cannotBeNull}"><h1>You haven't provided the amount!</h1></div>
-<div th:if="${available}"><h2>You can only deposit 500$ a day</h2></div>
-<div th:if="${failureDeposit}"><h2>Something went wrong, try again later!</h2></div>
-<div th:if="${successDeposit}"><h2>Money has been paid on your account succesfully</h2></div>
+
+<div class="deposit-menu blur">
+
 
 <div class="deposit-header">
 <!----- Savings Account Form ------>
@@ -55,7 +70,7 @@
  
  <div th:if="${main}">
    <form method="POST" th:action="@{/menu/make/mainDeposit}">
-    <input type="number" class="deposit-input" min="0" name="amount" placeholder="How much">
+    <input type="number" class="deposit-input" min="0" onchange="disError()" name="amount" placeholder="How much">
     <br>
     <button type="submit" id="load-button" class="btn btn-danger btn-lg btnclass">Deposit</button>
   </form>
@@ -64,7 +79,7 @@
 
 <div th:if="${savings}">
   <form method="POST" th:action="@{/menu/make/savingsDeposit}">
-    <input type="number" class="form-input" name="amount" min="0" placeholder="How much">
+    <input type="number" class="form-input" name="amount" onchange="disError()" min="0" placeholder="How much">
     <br>
     <button type="submit" id="load-button" class="btn btn-danger btn-lg btnclass">Deposit</button>
   </form>
@@ -76,7 +91,21 @@
 
 
 <script src="/js/loader.js"></script>
+<script>
 
+setTimeout(function(){
+	$('body').removeClass("loader");
+	$('body').removeClass("position-loader");
+	$('body').removeAttr("class");
+	$('.deposit-menu').removeClass("blur");
+	$('a').removeClass("blur");
+	$('.alert').removeClass("blur");
+	
+}, 1000);
+
+
+
+</script>
 
 </body>
 </html>

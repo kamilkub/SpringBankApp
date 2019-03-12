@@ -35,6 +35,12 @@
 	 
  }
  
+ function disappearErrors(){
+	  
+	 $('.err').fadeOut('slow');
+	 
+ }
+ 
 
  
  

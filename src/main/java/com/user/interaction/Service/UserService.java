@@ -1,6 +1,7 @@
 package com.user.interaction.Service;
 
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class UserService {
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         
-        firstName = firstName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
+        firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
         lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
         
         
@@ -72,6 +73,34 @@ public class UserService {
 		return user;
 
 	}
+	
+	public User findById(long id) {
+		return userRepository.findById(id);
+		
+	}
+	
+	@Transactional
+	public User updateUser(User user) {
+		
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        
+        firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+        lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
+        
+        
+        
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		
+		userRepository.save(user);
+
+		return user;
+
+	}
+	
+
+
 
 	
 }

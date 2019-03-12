@@ -1,21 +1,26 @@
 package com.user.interaction.Service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.user.interaction.Model.MainAccount;
+import com.user.interaction.Model.MainTransactions;
 import com.user.interaction.Model.SavingsAccount;
+import com.user.interaction.Model.SavingsTransactions;
 import com.user.interaction.Repositories.AccountRepository;
 import com.user.interaction.Repositories.MainAccountImpl;
+import com.user.interaction.Repositories.MainTransactionsRepository;
+import com.user.interaction.Repositories.SaveTransactionsRepository;
 import com.user.interaction.Repositories.SavingsAccountImpl;
 
 @Service("accountService")
 public class AccountService implements AccountRepository {
 
-	private static int account_numb = 12116578;
+	private static int account_numb = 13126545;
 	
 	@Autowired
 	private MainAccountImpl mainAccountImpl;
@@ -23,7 +28,17 @@ public class AccountService implements AccountRepository {
 	@Autowired
 	private SavingsAccountImpl savAccountImpl;
 	
+	@Autowired
+	private SaveTransactionsRepository savTransRepo;
 	
+	@Autowired
+	private MainTransactionsRepository mainTransRepo;
+	
+    public boolean findByAccountNumber(int accountNumber) {
+    	mainAccountImpl.findByAccountNumber(accountNumber);
+    	
+    	return true;
+    }
 
 	public MainAccount openMainAccount() {
 		
@@ -54,8 +69,24 @@ public class AccountService implements AccountRepository {
     	
     	MainAccount mainAccount = mainAccountImpl.findByAccountNumber(accountNumber);
     	
-    	mainAccount.setAccountBalance(amount);
+        BigDecimal accountStatus = mainAccount.getAccountBalance();
     	
+    	BigDecimal updateStatus = accountStatus.add(amount);
+    	
+    	mainAccount.setAccountBalance(updateStatus);
+    	
+    	MainTransactions mainTrans = new MainTransactions();
+    	mainTrans.setAmount(amount);
+    	mainTrans.setAvailableBalance(accountStatus);
+    	mainTrans.setDate(getCurrentDate());
+    	mainTrans.setDescrp("Regular main account deposit");
+    	mainTrans.setType("Main Account Deposit");
+    	mainTrans.setStatus("RECEIVED");
+    	mainTrans.setMainAccount(mainAccount);
+    	
+    	
+    	
+    	mainTransRepo.save(mainTrans); 
     	mainAccountImpl.save(mainAccount);
     	
     	return true;
@@ -66,12 +97,64 @@ public class AccountService implements AccountRepository {
     	
     	SavingsAccount savAccount = savAccountImpl.findByAccountNumber(accountNumber);
     	
-    	savAccount.setAccountBalance(amount);
+    	BigDecimal accountStatus = savAccount.getAccountBalance();
     	
+    	BigDecimal updateStatus = accountStatus.add(amount);
+    	
+    	savAccount.setAccountBalance(updateStatus);
+    	
+    	SavingsTransactions savTrans = new SavingsTransactions();
+    	
+    	savTrans.setAmount(amount);
+    	savTrans.setAvailableBalance(accountStatus);
+    	savTrans.setDate(getCurrentDate());
+        savTrans.setType("Savings Deposit");
+        savTrans.setDescrp("Regular deposited money");
+        savTrans.setStatus("RECEIVED");
+        savTrans.setSavingsAccount(savAccount);
+    	
+
+    	savTransRepo.save(savTrans);
     	savAccountImpl.save(savAccount);
     	
     	return true;
     	
+    }
+ 
+    public boolean sendMoneyToRecipient(int accountNumber, BigDecimal money, String description, int senderAccountNumber) {
+    	
+    	MainAccount mainAccount = mainAccountImpl.findByAccountNumber(accountNumber);
+    	
+    	MainAccount senderAccount = mainAccountImpl.findByAccountNumber(senderAccountNumber);
+    	
+        BigDecimal accountSender = senderAccount.getAccountBalance();
+    	
+    	BigDecimal updateSender = accountSender.subtract(money);
+    	
+    	
+    	MainTransactions mainTrans = new MainTransactions();
+    	
+        BigDecimal accountStatus = mainAccount.getAccountBalance();
+    	
+    	BigDecimal updateStatus = accountStatus.add(money);
+    	
+    	mainAccount.setAccountBalance(updateStatus);
+    	
+    	senderAccount.setAccountBalance(updateSender);
+    	
+    	mainTrans.setAmount(money);
+    	mainTrans.setAvailableBalance(accountStatus);
+    	mainTrans.setDate(getCurrentDate());
+    	mainTrans.setType("User to User");
+    	mainTrans.setDescrp(description);
+    	mainTrans.setStatus("RECEIVED");
+    	mainTrans.setMainAccount(mainAccount);
+    	
+    	mainTransRepo.save(mainTrans);
+    	mainAccountImpl.save(mainAccount);
+    	mainAccountImpl.save(senderAccount);
+    	
+    	return true;
     }
     
     
@@ -79,6 +162,18 @@ public class AccountService implements AccountRepository {
     private int AccountNumber() {
     	return ++account_numb;
     }
+    
+    
+    private String getCurrentDate() {
+    	
+    	String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+    	
+    	return timeStamp;
+    	
+    	
+    }
+
+	
     
    
     

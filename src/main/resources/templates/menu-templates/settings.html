@@ -12,46 +12,59 @@
     <div class="con-menu-cards">
        <div id="user-menu">
   
-     
+      <span th:if="${changed}" style="color:green; font-size:25px;">User updated successfully</span>
       
          <div class="user-details">
-           <h1>User Details</h1>
-					<form method="POST">
+           <h1 class="my-text">User Details</h1>
+					<form method="POST" th:action="@{/menu/settings}" th:object="${updateUser}">
+					
+					<input type="hidden" th:field="*{login}">
+					
+					<input type="hidden" th:field="*{id}">
 					
 					  <div class="form-group">
 					    <label for="firstName">First Name</label>
-						  <input class="form-control" type="text"  th:value="${userName}" placeholder="First name" readonly>
+						  <input class="form-control" type="text" th:field="*{firstName}"  th:value="${userName}" placeholder="First name" readonly>
 					  </div>
 					  <div class="form-group">
 					    <label for="lastName">Last Name</label>
-						  <input class="form-control" type="text"  th:value="${lastName}" placeholder="Last name" readonly>
+						  <input class="form-control" type="text" th:field="*{lastName}"  th:value="${lastName}" placeholder="Last name" readonly>
 					  </div>
 					   <div class="form-group">
 					    <label for="phoneNumber">Phone number</label>
-						  <input class="form-control" type="text" th:value="${phone}" placeholder="Last name" readonly>
+						  <input class="form-control" type="text" th:field="*{phone}" th:value="${phone}" placeholder="Phone Number" readonly>
 					  </div>
 						<div class="form-group">
 							<label for="email">Email address</label> 
-							<input type="email" class="form-control" th:value="${email}" aria-describedby="emailHelp" placeholder="Email" readonly>
+							<input type="email" class="form-control" th:field="*{email}" th:value="${email}" aria-describedby="emailHelp" placeholder="Email" readonly>
 							<small id="emailHelp" class="form-text text-muted">We'll
 								never share your email with anyone else.</small>
 						</div>
 
+                        <input type="hidden" th:field="*{savingsAccount}">
+                        
+                        <input type="hidden" th:field="*{mainAccount}">
                       <div class="form-group">
-					    <label for="mainNumb">Main Account Number</label>
-						  <input class="form-control" type="text" th:value="${mainNumber}" placeholder="Account number" readonly>
-					  </div>
+					  <input type="password" class="form-control" th:field="*{password}" placeholder="Enter Password" readonly>
+                   </div>
                    
-                       <div class="form-group">
-					    <label for="savNumb">Savings Account Number</label>
-						  <input class="form-control" type="text" th:value="${savNumber}" placeholder="Account number" readonly>
-					  </div>
                    
-                   <button type="submit" class="btn btn-success btn-lg">Update Details</button>
+                   <div class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                   </div>
+                   <div class="err" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                   </div>
+                   <div class="err" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                   </div>
+                   <div class="err" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">
+                   </div>
+                   <div class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                    </div> 
+                   
+                   <button type="submit" class="btn btn-success btn-lg" id="update-button" disabled>Update Details</button>
 					</form>
 					<br>
 					<button class="btn btn-warning btn-lg" id="change-button">Change Details</button>
-
+                       <span th:if="${errors}">W CHUJ ZLE POSZLo</span>
 				</div>
       
       
@@ -65,5 +78,6 @@
  
  
  <script src="/js/loader.js"></script>
+  <script src="/js/required.js"></script>
 </body>
 </html>

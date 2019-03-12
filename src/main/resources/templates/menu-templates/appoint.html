@@ -12,9 +12,67 @@
     
     <div class="con-menu-cards">
     
+    <div id="user-menu">
+    
+     <h1 class="my-text">Make an appointment</h1>
+      <hr>
+    <form method="POST" th:action="@{/menu/appointments}" th:object="${meeting}">
+    
+             <div th:if="${saved}"><h1 class="my-text" style="color:green;">Appointment made successfully</h1></div>
+             <div th:if="${failure}"><h1 class="my-text" style="color:red;">Problem occured. Try again!</h1></div>
+    
+            <input type="hidden" th:field="${meeting.fullName}" th:value="${entireName}">
+            
+    
+            <div class="form-group">
+           <input type="text" class="form-control" th:field="${meeting.location}" placeholder="Meeting Location" name="location">
+           </div>
+           <div class="form-group">
+           <input type="text" class="form-control" th:field="${meeting.description}" placeholder="Meeting Description" name="description">
+           </div>
+           <div class="form-group">
+           <input type="date" class="form-control" th:field="${meeting.date}" value="Appointment date" name="date">
+            </div>
+            
+           <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+    
+      <h1 class="my-text" style="margin-top:5%;">Appointments</h1>
+      <hr>
+    
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Creator</th>
+      <th scope="col">Date</th>
+      <th scope="col">Location</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <th:block th:each="meeting : ${meetings}">
+    <tr>
+      <th scope="row">1</th>
+      <td th:text="${meeting.fullName}"></td>
+      <td th:text="${meeting.date}"></td>
+      <td th:text="${meeting.location}"></td>
+      <td th:text="${meeting.description}"></td>
+      <td><a type="button" class="btn btn-danger" th:href="@{/meeting-del(id=${meeting.id})}">Delete</a></td>
+    </tr>
+   
+  </th:block>
+</table>
+    
+       </div>
+     
+     </div>
+     
     </div>
+   
+    
   
- </div>
+
  
 </body>
 </html>
