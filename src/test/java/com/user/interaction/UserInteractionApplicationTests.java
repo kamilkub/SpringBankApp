@@ -55,7 +55,7 @@ public class UserInteractionApplicationTests {
 	@Test
 	public void contextLoads() {
 		
-	User user = uService.findByLogin("hacking");
+	User user = uService.findByLogin("");
 	
 	user.setActivated(true);
 	
@@ -70,10 +70,10 @@ public class UserInteractionApplicationTests {
 //	mAImpl.save(account);
 //		
 		
-//		User user = uService.findByLogin("kamkk");
-//		Meetings meet = new Meetings();
-//		
-//		meet.setConfirmed(true);
+//	User user = uService.findByLogin("");
+		
+//	Meetings meet = new Meetings();
+//              meet.setConfirmed(true);
 //		meet.setDate("20/12/2019");
 //		meet.setDescription("Meet-up about opening bank account in our service");
 //		meet.setFullName("Micheal Milson");
@@ -98,15 +98,15 @@ public class UserInteractionApplicationTests {
 //	  
 //		User user = new User();
 //		
-//		user.setFirstName("kamil");
-//		user.setLastName("karol");
-//		user.setLogin("kamkk");
-//		user.setPhone("784263165");
+//		user.setFirstName("");
+//		user.setLastName("");
+//		user.setLogin("");
+//		user.setPhone("");
 //		user.setRole("USER");
-//		user.setPassword(encoder.encode("2839739"));
+//		user.setPassword(encoder.encode(""));
 //		user.setMainAccount(aService.openMainAccount());
 //		user.setSavingsAccount(aService.openSavingsAccount());
-//		user.setEmail("kamil@o2.pl");
+//		user.setEmail("");
 //		
 //		
 //		userRepo.save(user);
