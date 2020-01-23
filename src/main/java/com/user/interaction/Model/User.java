@@ -27,7 +27,7 @@ public class User {
 	// Main User variables
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull(message = "Please provide login")

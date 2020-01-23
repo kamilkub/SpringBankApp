@@ -20,7 +20,7 @@ public class MainAccount {
 
 	// Main variables off main account
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	private int accountNumber;

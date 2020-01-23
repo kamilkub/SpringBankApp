@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.user.interaction.Model.Meetings;
 import com.user.interaction.Model.User;
 
-@Repository("meetingsRepository")
+@Repository
 public interface MeetingsRepository extends CrudRepository<Meetings, Long> {
 
 	

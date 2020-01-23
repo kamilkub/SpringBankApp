@@ -3,6 +3,8 @@ package com.user.interaction;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +32,6 @@ import com.user.interaction.Service.UserService;
 @RequestMapping("/user")
 public class AuthenticationController {
 
-
-
 	@Autowired
 	private UserService userService;
     
@@ -39,21 +39,15 @@ public class AuthenticationController {
 	private EmailService emailService;
 	
 
-
-	
-	
 	@GetMapping("/register")
 	public String registrationForm(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		    	
-		    	model.addAttribute("user", new User());
-				
-				return "auth-templates/register";
-		    
+		model.addAttribute("user", new User());
+		return "auth-templates/register";
 
 	}
 
 	@PostMapping("/register")
-	public String registrationAction(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpServletRequest request) {
+	public String registrationAction(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpServletRequest request) throws MessagingException {
 
 		if (result.hasErrors()) {
 
@@ -69,19 +63,9 @@ public class AuthenticationController {
 				user.setActivated(false);;
 
 				userService.saveUserInDatabase(user);
-				
-				String bankUrl = request.getScheme()+"://"+request.getServerName();
-				
-				SimpleMailMessage tokenMail = new SimpleMailMessage();
-				tokenMail.setTo(user.getEmail());
-				tokenMail.setSubject("Bank App Confirmation");
-				tokenMail.setText("Confirm your email addres by clicking on this url below:\n"+bankUrl+"/user/confirm?token="+user.getToken());
-				tokenMail.setFrom("bankapp@gmail.com");
-				
-				emailService.sendMail(tokenMail);
+				emailService.sendMail(user.getEmail(), user.getToken());
 				
 				model.addAttribute("saved", true);
-
 			}
 		}
 
@@ -92,38 +76,25 @@ public class AuthenticationController {
 	
 	@GetMapping("/confirm")
 	public String confirmUserToken(@RequestParam("token") String token) {
-		
 		User user = userService.findByToken(token);
-		
-		System.out.println(user);
-		
+
 		user.setActivated(true);
-		
 		userService.updateUser(user);
 		
 		return "confirm";
-		
 	}
-	
-	
 	
 
 	@GetMapping("/login")
 	public String loginForm(Model model, String error, HttpServletRequest response) {
-		
-
-			return "auth-templates/login";
-		  
-	
+		return "auth-templates/login";
 	}
 	
 	
 	public boolean isAuthenticated(){
-
-	       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	       return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
-
-	   }
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
+	}
 	
 	
 }

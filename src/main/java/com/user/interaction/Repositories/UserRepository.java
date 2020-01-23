@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.user.interaction.Model.User;
 
-@Repository("userRepository")
+@Repository
 public interface UserRepository extends CrudRepository<User, Long>  {
 	
 	User findByLogin(String login);

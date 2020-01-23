@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -23,33 +24,34 @@ import com.user.interaction.Service.UserService;
 @SpringBootTest
 public class UserInteractionApplicationTests {
 
+
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepository;
 	
 	@Autowired
-	BCryptPasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 	
 	@Autowired
-	UserService uService;
+	private UserService uService;
 	
 	@Autowired
-	AccountService aService;
+	private AccountService aService;
 	
 	@Autowired
-	MeetingService mService;
+	private MeetingService mService;
 	
 	
 	@Autowired
-	MainAccountImpl mAImpl;
+	private MainAccountImpl mAImpl;
 	
 	@Autowired
-	SavingsAccountImpl sAImpl;
+	private SavingsAccountImpl sAImpl;
 	
 	@Autowired
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	
 	@Autowired
-	MeetingsRepository mRepo;
+	private MeetingsRepository mRepo;
 	
 	
 	@Test
@@ -60,18 +62,18 @@ public class UserInteractionApplicationTests {
 	user.setActivated(true);
 	
     uService.updateUser(user);
-//	
+//
 //	MainAccount account = mAImpl.findById(user.getMainAccount().getId());
-//	
+//
 //	BigDecimal big = BigDecimal.valueOf(200);
-//	
+//
 //	account.setAccountBalance(big);
-//    
+//
 //	mAImpl.save(account);
-//		
-		
+
+
 //	User user = uService.findByLogin("");
-		
+
 //	Meetings meet = new Meetings();
 //              meet.setConfirmed(true);
 //		meet.setDate("20/12/2019");
@@ -79,25 +81,25 @@ public class UserInteractionApplicationTests {
 //		meet.setFullName("Micheal Milson");
 //		meet.setLocation("London, UK");
 //		meet.setUser(user);
-//		
-//		
+//
+//
 //		mService.saveMeeting(meet);
-		
+
 	}
-	
+
 //	@Test
 //	public void addUser() {
-//		
-//		
-//		
+//
+//
+//
 //		mAImpl.deleteAll();
-//		
+//
 //		sAImpl.deleteAll();
-//		
-//	}	
-//	  
+//
+//	}
+//
 //		User user = new User();
-//		
+//
 //		user.setFirstName("");
 //		user.setLastName("");
 //		user.setLogin("");
@@ -107,21 +109,21 @@ public class UserInteractionApplicationTests {
 //		user.setMainAccount(aService.openMainAccount());
 //		user.setSavingsAccount(aService.openSavingsAccount());
 //		user.setEmail("");
-//		
-//		
+//
+//
 //		userRepo.save(user);
-//		
-//		
+//
+//
 //	}
-	
-	
-//	@Test 
+
+
+//	@Test
 //	public void deleteUser() {
-//		
-//		
+//
+//
 //		userRepo.deleteAll();
-//		
-//		
+//
+//
 //	}
 
 }

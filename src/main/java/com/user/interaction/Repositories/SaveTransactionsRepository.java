@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.user.interaction.Model.SavingsTransactions;
 
-@Repository("saveTransactionsRepository")
+@Repository
 public interface SaveTransactionsRepository extends CrudRepository<SavingsTransactions, Long> {
 	
 	

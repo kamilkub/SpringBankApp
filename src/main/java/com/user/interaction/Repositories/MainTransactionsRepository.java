@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.user.interaction.Model.MainTransactions;
 
-@Repository("mainTransactionsRepository")
+@Repository
 public interface MainTransactionsRepository extends CrudRepository<MainTransactions, Long> {
 	
 	

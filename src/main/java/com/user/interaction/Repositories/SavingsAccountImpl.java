@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.user.interaction.Model.SavingsAccount;
 
-@Repository("savingsAccountImpl")
+@Repository
 public interface SavingsAccountImpl extends CrudRepository<SavingsAccount, Long> {
      
 	SavingsAccount findByAccountNumber(int accountNumber);
