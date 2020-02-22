@@ -13,7 +13,8 @@
 
 ## Requirements
 To make the whole project work you will need provide your own gmail credentials, because Spring Security uses email authentication.
-<code>spring.mail.username=</code>
-<code>spring.mail.password=</code>
+<code>spring.mail.username= <!-- your username --></code>
+<br>
+<code>spring.mail.password= <!-- your password --></code>
 
 
