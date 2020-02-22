@@ -1,14 +1,14 @@
 # SpringBankApp
 ## Technologies
-### Spring Boot
-### Spring Security
-### HTML CSS
-### Thymeleaf
-### JavaScript and jQuery library
-### Bootstrap
+- Spring Boot
+- Spring Security
+- HTML CSS
+- Thymeleaf
+- JavaScript and jQuery library
+- Bootstrap
 ## Server 
-### Tomcat
+- Tomcat
 ## Database
-### MySQL
+- MySQL
 
 
