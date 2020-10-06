@@ -17,7 +17,9 @@ Additionally what's needed is databse configuration which is also in the same fi
 Entire configuration is in application.resources file
 <br>
 <code>spring.datasource.url = mysql://any_example:3606/schema_name</code>
+<b>
 <code>spring.datasource.username</code>
+<b>
 <code>spring.datasource.password</code>
 <b>
 <code>spring.mail.username= your username</code>
