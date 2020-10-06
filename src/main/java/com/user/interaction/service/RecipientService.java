@@ -1,12 +1,11 @@
-package com.user.interaction.Service;
+package com.user.interaction.service;
 
-import java.util.List;
-
+import com.user.interaction.model.Recipients;
+import com.user.interaction.model.User;
+import com.user.interaction.repositories.RecipientsRepository;
 import org.springframework.stereotype.Service;
 
-import com.user.interaction.Model.Recipients;
-import com.user.interaction.Model.User;
-import com.user.interaction.Repositories.RecipientsRepository;
+import java.util.List;
 
 @Service("recipientService")
 public class RecipientService {

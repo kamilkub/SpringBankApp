@@ -1,13 +1,12 @@
-package com.user.interaction;
+package com.user.interaction.controller;
 
 
-
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
+import com.user.interaction.model.Meetings;
+import com.user.interaction.model.Recipients;
+import com.user.interaction.model.User;
+import com.user.interaction.service.MeetingService;
+import com.user.interaction.service.RecipientService;
+import com.user.interaction.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,12 +19,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.user.interaction.Model.Meetings;
-import com.user.interaction.Model.Recipients;
-import com.user.interaction.Model.User;
-import com.user.interaction.Service.MeetingService;
-import com.user.interaction.Service.RecipientService;
-import com.user.interaction.Service.UserService;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.List;
 
 
 

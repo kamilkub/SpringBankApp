@@ -1,24 +1,21 @@
 package com.user.interaction;
 
-import javax.persistence.EntityManager;
-
+import com.user.interaction.model.User;
+import com.user.interaction.repositories.MainAccountImpl;
+import com.user.interaction.repositories.MeetingsRepository;
+import com.user.interaction.repositories.SavingsAccountImpl;
+import com.user.interaction.repositories.UserRepository;
+import com.user.interaction.service.AccountService;
+import com.user.interaction.service.MeetingService;
+import com.user.interaction.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.user.interaction.Model.Meetings;
-import com.user.interaction.Model.User;
-import com.user.interaction.Repositories.MainAccountImpl;
-import com.user.interaction.Repositories.MeetingsRepository;
-import com.user.interaction.Repositories.SavingsAccountImpl;
-import com.user.interaction.Repositories.UserRepository;
-import com.user.interaction.Service.AccountService;
-import com.user.interaction.Service.MeetingService;
-import com.user.interaction.Service.UserService;
+import javax.persistence.EntityManager;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -1,9 +1,8 @@
-package com.user.interaction.Repositories;
+package com.user.interaction.repositories;
 
+import com.user.interaction.model.MainAccount;
+import com.user.interaction.model.SavingsAccount;
 import org.springframework.stereotype.Repository;
-
-import com.user.interaction.Model.MainAccount;
-import com.user.interaction.Model.SavingsAccount;
 
 @Repository
 public interface AccountRepository {

@@ -1,21 +1,16 @@
-package com.user.interaction.Service;
+package com.user.interaction.service;
+
+import com.user.interaction.model.MainAccount;
+import com.user.interaction.model.MainTransactions;
+import com.user.interaction.model.SavingsAccount;
+import com.user.interaction.model.SavingsTransactions;
+import com.user.interaction.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.user.interaction.Model.MainAccount;
-import com.user.interaction.Model.MainTransactions;
-import com.user.interaction.Model.SavingsAccount;
-import com.user.interaction.Model.SavingsTransactions;
-import com.user.interaction.Repositories.AccountRepository;
-import com.user.interaction.Repositories.MainAccountImpl;
-import com.user.interaction.Repositories.MainTransactionsRepository;
-import com.user.interaction.Repositories.SaveTransactionsRepository;
-import com.user.interaction.Repositories.SavingsAccountImpl;
 
 @Service("accountService")
 public class AccountService implements AccountRepository {

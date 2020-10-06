@@ -1,15 +1,12 @@
-package com.user.interaction.Service;
+package com.user.interaction.service;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.user.interaction.model.Meetings;
+import com.user.interaction.model.User;
+import com.user.interaction.repositories.MeetingsRepository;
 import org.springframework.stereotype.Service;
 
-import com.user.interaction.Model.Meetings;
-import com.user.interaction.Model.User;
-import com.user.interaction.Repositories.MeetingsRepository;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("meetingService")
 public class MeetingService {

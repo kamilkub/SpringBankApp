@@ -1,13 +1,12 @@
-package com.user.interaction.Service;
+package com.user.interaction.service;
 
+import com.user.interaction.model.MainTransactions;
+import com.user.interaction.model.SavingsTransactions;
+import com.user.interaction.repositories.MainTransactionsRepository;
+import com.user.interaction.repositories.RecipientsRepository;
+import com.user.interaction.repositories.SaveTransactionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.user.interaction.Model.MainTransactions;
-import com.user.interaction.Model.SavingsTransactions;
-import com.user.interaction.Repositories.MainTransactionsRepository;
-import com.user.interaction.Repositories.RecipientsRepository;
-import com.user.interaction.Repositories.SaveTransactionsRepository;
 
 @Service("transcationService")
 public class TransactionService {

@@ -1,15 +1,13 @@
-package com.user.interaction.Service;
+package com.user.interaction.service;
 
 
-
-import javax.transaction.Transactional;
-
+import com.user.interaction.model.User;
+import com.user.interaction.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.user.interaction.Model.User;
-import com.user.interaction.Repositories.UserRepository;
+import javax.transaction.Transactional;
 
 @Service("userService")
 public class UserService {
