@@ -12,8 +12,8 @@
 - MySQL
 
 ## Requirements
-To make the whole project work you will need provide your own gmail credentials, because Spring Security uses email authentication.
-Additionally what's needed is databse configuration which is also in the same file.
+To make the whole project work you will have to provide your own gmail credentials, because Spring Security uses email authentication.
+Additionally what's needed is database configuration which is also in the same file.
 Entire configuration is in application.resources file
 <br>
 <code>spring.datasource.url = mysql://any_example:3606/schema_name</code>
